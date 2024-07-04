@@ -7,7 +7,6 @@ class Task {
 
   toggleComplete() {
     this.completed = !this.completed;
-    console.log('este es this.complete', this.completed);
   }
 
   updateDescription(newDescription) {
@@ -24,6 +23,7 @@ class TaskManager {
   addTask(description) {
     const id = this.tasks.length ? this.tasks[this.tasks.length - 1].id + 1 : 1;
     const task = new Task(id, description);
+    console.dir(task);
     this.tasks.push(task);
     this.saveTasks();
     this.renderTasks();
@@ -36,6 +36,7 @@ class TaskManager {
   }
 
   toggleTaskComplete(id) {
+    //Obtenemos la tarea segun el id
     const task = this.tasks.find((task) => task.id === id);
     if (task) {
       task.toggleComplete();
@@ -91,9 +92,17 @@ class TaskManager {
         this.deleteTask(task.id);
       });
 
+      const taskCompletedButton = document.createElement('button');
+      taskCompletedButton.textContent = 'completar';
+      taskCompletedButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleTaskComplete(task.id);
+      });
+
       item.appendChild(descriptionSpan);
       item.appendChild(editButton);
       item.appendChild(deleteButton);
+      item.appendChild(taskCompletedButton);
       taskList.appendChild(item);
     });
   }
@@ -101,7 +110,6 @@ class TaskManager {
 
 document.addEventListener('DOMContentLoaded', () => {
   const taskManager = new TaskManager();
-
   document.getElementById('add-task').addEventListener('click', () => {
     const newTask = document.getElementById('new-task').value;
     if (newTask) {

@@ -90,9 +90,17 @@ class NoteManager {
         this.deleteNote(note.id);
       });
 
+      const completedButton = document.createElement('button');
+      completedButton.textContent = 'marcar';
+      completedButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleNoteImportant(note.id);
+      });
+
       item.appendChild(descriptionSpan);
       item.appendChild(editButton);
       item.appendChild(deleteButton);
+      item.appendChild(completedButton);
       noteList.appendChild(item);
     });
   }

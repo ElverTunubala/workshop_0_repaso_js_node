@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Gestión de Productos</h1>
+        <div>
+            <button id="show-products">Mostrar Productos</button>
+            <button id="calculate-total">Calcular Precio Total</button>
+            <input type="text" id="category-input" placeholder="Filtrar por Categoría">
+            <button id="filter-category">Filtrar</button>
+            <input type="text" id="search-input" placeholder="Buscar Producto por Nombre">
+            <button id="search-product">Buscar</button>
+        </div>
+        <div id="products"></div>
+        <div id="total-price"></div>
+        <div id="search-result"></div>
+        <div id="error-message"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
